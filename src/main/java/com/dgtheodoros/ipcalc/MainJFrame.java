@@ -17,8 +17,10 @@ import java.util.logging.Logger;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Caret;
 /**
  *
  * @author Theo
@@ -26,13 +28,23 @@ import javax.swing.text.BadLocationException;
 public class MainJFrame extends javax.swing.JFrame {
 
     private static String val_1 = "";
+    private static String val_11 = "";
+    private static String val_2 = "";
+    private static String val_21 = "";
+    private static String val_3 = "";
+    private static String val_31 = "";
+    private static String val_4 = "";
+    private static String val_41 = "";
     
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
         initComponents();
-        TextField1FieldValidation ();
+        TextField1FieldValidation();
+        TextField2FieldValidation();
+        TextField3FieldValidation();
+        TextField4FieldValidation();
     }
     
     RegexMatches Regm = new RegexMatches();
@@ -71,10 +83,25 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField2KeyPressed(evt);
+            }
+        });
 
         jTextField3.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField3KeyPressed(evt);
+            }
+        });
 
         jTextField4.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField4KeyPressed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText(".");
@@ -164,6 +191,9 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+/* ----------------------------- TextField 1 Start --------------------------- */
+    
+    /*When backspase or Del Keys  are pressed */
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE ){  
@@ -171,7 +201,9 @@ public class MainJFrame extends javax.swing.JFrame {
                         
                         jTextField1.setText("");
                         val_1 = "";
+                        val_11 = "";
                         jTextField1.setEditable(true);
+                        jLabel8.setText("");   
                     }
 
                     if(evt.getKeyCode() == KeyEvent.VK_ESCAPE)
@@ -180,74 +212,372 @@ public class MainJFrame extends javax.swing.JFrame {
                         
                         jTextField1.setText("");
                         val_1 = "";
+                        val_11 = "";
                         jTextField1.setEditable(true);
+                        jLabel8.setText("");
                     }
     }//GEN-LAST:event_jTextField1KeyPressed
+/*----------------------------- TextField 1 End -----------------------   ---- */
+    
+/*- ---------------------------- TextField 2 Start --------------------------- */   
+    /*When backspase or Del Keys  are pressed */
+    private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE ){  
+                        //code to execute if backspace is pressed
+                        
+                        jTextField2.setText("");
+                        val_2 = "";
+                        val_21 = "";
+                        jTextField2.setEditable(true);
+                        jLabel8.setText("");   
+                    }
 
+                    if(evt.getKeyCode() == KeyEvent.VK_ESCAPE)
+                    {
+                        //code to execute if escape is pressed
+                        
+                        jTextField2.setText("");
+                        val_2 = "";
+                        val_21 = "";
+                        jTextField2.setEditable(true);
+                        jLabel8.setText("");
+                    }     
+    }//GEN-LAST:event_jTextField2KeyPressed
+
+/*----------------------------- TextField 2 End ----------------------------- */
+
+/*------------------------------ TextField 3 Start --------------------------- */    
+    private void jTextField3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE ){  
+                        //code to execute if backspace is pressed
+                        
+                        jTextField3.setText("");
+                        val_3 = "";
+                        val_31 = "";
+                        jTextField3.setEditable(true);
+                        jLabel8.setText("");   
+                    }
+
+                    if(evt.getKeyCode() == KeyEvent.VK_ESCAPE)
+                    {
+                        //code to execute if escape is pressed
+                        
+                        jTextField3.setText("");
+                        val_3 = "";
+                        val_31 = "";
+                        jTextField3.setEditable(true);
+                        jLabel8.setText("");
+                    }   
+    }//GEN-LAST:event_jTextField3KeyPressed
+
+/*----------------------------- TextField 3 End ----------------------------- */
+
+/*------------------------------ TextField 4 Start --------------------------- */    
+    private void jTextField4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode() == KeyEvent.VK_BACK_SPACE ){  
+                        //code to execute if backspace is pressed
+                        
+                        jTextField4.setText("");
+                        val_4 = "";
+                        val_41 = "";
+                        jTextField4.setEditable(true);
+                        jLabel8.setText("");   
+                    }
+
+                    if(evt.getKeyCode() == KeyEvent.VK_ESCAPE)
+                    {
+                        //code to execute if escape is pressed
+                        
+                        jTextField4.setText("");
+                        val_4 = "";
+                        val_41 = "";
+                        jTextField4.setEditable(true);
+                        jLabel8.setText("");
+                    }
+        
+    }//GEN-LAST:event_jTextField4KeyPressed
+/*----------------------------- TextField 4 End ----------------------------- */ 
+    
+    
+/* ----------------------------- TextField 1 Start --------------------------- */    
+    /*Function for text field validation */
     public void TextField1FieldValidation() {
-         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {       
             public void keyTyped(java.awt.event.KeyEvent evt) {
                         // TODO add your handling code here:
                     char ch;
-                    String s,m ;
-                    int k;
-                     
+                    String s = null;
+             
                     ch = evt.getKeyChar();    
                     if (ch >= '0' && ch <= '9')  {
                         jTextField1.setEditable(true);
                         s =  Character.toString(ch);
+                        
                         try{
-                            //val_1 = val_1.concat(s);
-                            getjTextField1Value(s);
+                            if (val_11.length() >= 3){
+                                val_11 = val_1;   
+                            }
+                            if (s.isEmpty() == false){
+                            val_11 = val_11.concat(s);         
+                        }    
+                            getjTextField1Value(s);    
                         }
-                        catch(NullPointerException ex){
+                        catch(NullPointerException ex){    
                         }   
                     }
                     else{
                         jTextField1.setEditable(false);
                         jTextField1.setText("");
 
-                    }
-                    
-            }
+                    }                    
+            }          
         });         
          
     }//end of method
                          
     
     private void getjTextField1Value (String s) {
-        int r;
-        //String m ;
+       
         boolean res;
-        
-        
-            r = Integer.parseInt(s); //We validate if "s" is an integer
-           // m = String.valueOf(r); //returns a string representation of an integer
-            res = Regm.compare(val_1);
-            
-                
-           // m=jTextField1.getText();
-                if (res == true ){
-                    val_1 = val_1.concat(s);
+             
+                res = Regm.compare(val_1);
+                if (res == true && (Integer.parseInt(val_11) <= Integer.parseInt("223"))){                    
+                     val_1 = val_1.concat(s);
                 }
                 else if (val_1.isEmpty() == true){
                     val_1 = val_1.concat(s);
+                } 
+                else if (res == true || (Integer.parseInt(val_11) > Integer.parseInt("223"))){
+                    jLabel8.setForeground(Color.red); 
+                    jLabel8.setText("Invalid Input");
+                    jTextField1.setText("223");
+                    val_1 = "223";
+                    jTextField1.setEditable(false);
                 }
                 else  {
                     jTextField1.setText(null);
-                    jTextField1.setText("255");
+                    jTextField1.setText("");
                     jTextField1.setEditable(false);
-                    val_1 = "255";
-                    
-                }
-        
+                    val_1 = "";   
+                }        
     }
    
+/*----------------------------- TextField 1 End --------------------------- */    
     
     
+ /*----------------------------- TextField 2 Start --------------------------- */
+    
+                                        
+
+    /*Function for text field validation */
+    public void TextField2FieldValidation() {
+         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {       
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                        // TODO add your handling code here:
+                    char ch;
+                    String s = null;
+             
+                    ch = evt.getKeyChar();    
+                    if (ch >= '0' && ch <= '9')  {
+                        jTextField2.setEditable(true);
+                        jLabel8.setText("");
+                        s =  Character.toString(ch);
+                        
+                        try{
+                            if (val_21.length() >= 3){
+                                val_21 = val_2;   
+                            }
+                            if (s.isEmpty() == false){
+                            val_21 = val_21.concat(s);         
+                        }    
+                            getjTextField2Value(s);    
+                        }
+                        catch(NullPointerException ex){    
+                        }   
+                    }
+                    else{
+                        jTextField2.setEditable(false);
+                        jTextField2.setText("");
+
+                    }                    
+            }          
+        });         
+         
+    }//end of method
+                         
+    
+    private void getjTextField2Value (String s) {
+       
+        boolean res;
+             
+                res = Regm.compare(val_2);
+                if (res == true && (Integer.parseInt(val_21) < Integer.parseInt("256"))){                    
+                     val_2 = val_2.concat(s);
+                }
+                else if (val_2.isEmpty() == true){
+                    val_2 = val_2.concat(s);
+                }
+                else if (res == true && (Integer.parseInt(val_21) >= Integer.parseInt("256"))){
+                    jLabel8.setForeground(Color.red); 
+                    jLabel8.setText("Input must be <= 255");
+                    jTextField2.setText("255");
+                    val_2 = "255";
+                    jTextField2.setEditable(false);
+                }
+                else  {
+                    jLabel8.setForeground(Color.red); 
+                    jLabel8.setText("Invalid Input on 2nd box");
+                    jTextField2.setText(null);
+                    jTextField2.setText("");
+                    jTextField2.setEditable(false);
+                    val_2 = "";   
+                }        
+    }
+   
+/*----------------------------- TextField 2 End ----------------------------- */     
+    
+/*----------------------------- TextField 3 Start --------------------------- */
+/*Function for text field validation */
+    public void TextField3FieldValidation() {
+         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {       
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                        // TODO add your handling code here:
+                    char ch;
+                    String s = null;
+             
+                    ch = evt.getKeyChar();    
+                    if (ch >= '0' && ch <= '9')  {
+                        jTextField3.setEditable(true);
+                        jLabel8.setText("");
+                        s =  Character.toString(ch);
+                        
+                        try{
+                            if (val_31.length() >= 3){
+                                val_31 = val_3;   
+                            }
+                            if (s.isEmpty() == false){
+                            val_31 = val_31.concat(s);         
+                        }    
+                            getjTextField3Value(s);    
+                        }
+                        catch(NullPointerException ex){    
+                        }   
+                    }
+                    else{
+                        jTextField3.setEditable(false);
+                        jTextField3.setText("");
+
+                    }                    
+            }          
+        });         
+         
+    }//end of method
+                         
+    
+    private void getjTextField3Value (String s) {
+       
+        boolean res;
+             
+                res = Regm.compare(val_3);
+                if (res == true && (Integer.parseInt(val_31) < Integer.parseInt("256"))){                    
+                     val_3 = val_3.concat(s);
+                }
+                else if (val_3.isEmpty() == true){
+                    val_3 = val_3.concat(s);
+                }
+                else if (res == true && (Integer.parseInt(val_31) >= Integer.parseInt("256"))){
+                    jLabel8.setForeground(Color.red); 
+                    jLabel8.setText("Input must be <= 255");
+                    jTextField3.setText("255");
+                    val_3 = "255";
+                    jTextField3.setEditable(false);
+                }
+                else  {
+                    jLabel8.setForeground(Color.red); 
+                    jLabel8.setText("Invalid Input on 3rd box");
+                    jTextField3.setText(null);
+                    jTextField3.setText("");
+                    jTextField3.setEditable(false);
+                    val_3 = "";   
+                }        
+    }
+       
     
     
+/*----------------------------- TextField 3 End ----------------------------- */
     
+    
+/*----------------------------- TextField 4 Start --------------------------- */
+/*Function for text field validation */
+    public void TextField4FieldValidation() {
+         jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {       
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                        // TODO add your handling code here:
+                    char ch;
+                    String s = null;
+                    
+                    ch = evt.getKeyChar();    
+                    if (ch >= '0' && ch <= '9')  {
+                        jTextField4.setEditable(true);
+                        jLabel8.setText("");
+                        s =  Character.toString(ch);
+                        
+                        try{
+                            if (val_41.length() >= 3){
+                                val_41 = val_4;   
+                            }
+                            if (s.isEmpty() == false){
+                            val_41 = val_41.concat(s);         
+                        }    
+                            getjTextField4Value(s);    
+                        }
+                        catch(NullPointerException ex){    
+                        }   
+                    }
+                    else{
+                        jTextField4.setEditable(false);
+                        jTextField4.setText("");
+
+                    }                    
+            }          
+        });         
+         
+    }//end of method
+                         
+    
+    private void getjTextField4Value (String s) {
+       
+        boolean res;
+             
+                res = Regm.compare(val_4);
+                if (res == true && (Integer.parseInt(val_41) < Integer.parseInt("256"))){                    
+                     val_4 = val_4.concat(s);
+                }
+                else if (val_4.isEmpty() == true){
+                    val_4 = val_4.concat(s);
+                }
+                else if (res == true && (Integer.parseInt(val_41) >= Integer.parseInt("256"))){
+                    jLabel8.setForeground(Color.red); 
+                    jLabel8.setText("Input must be <= 255");
+                    jTextField4.setText("255");
+                    val_4 = "255";
+                    jTextField4.setEditable(false);
+                }
+                else  {
+                    jLabel8.setForeground(Color.red); 
+                    jLabel8.setText("Invalid Input on 4th box");
+                    jTextField4.setText(null);
+                    jTextField4.setText("");
+                    jTextField4.setEditable(false);
+                    val_4 = "";   
+                }        
+    }    
+    
+    
+/*----------------------------- TextField 4 End ----------------------------- */    
     
     
     /**
