@@ -21,12 +21,15 @@ public class HostMatch {
    private  String f4; // IP field
    String[] v = new String[4]; // Netmask
    int[] hosts = new int [2];
+   int[] subnetbit = new int [2];
+   ArrayList<Integer> sub;
    
    public HostMatch(){
+        this.sub = new ArrayList<>(4);
    }
    
    public HostMatch (String s1,String s2,String s3,String s4,int k){
-        
+        this.sub = new ArrayList<>(4);
         this.v[0] = "";
         this.v[1] = "";
         this.v[2] = "";
@@ -37,6 +40,8 @@ public class HostMatch {
         this.f4 = s4;
         this.hosts[0] = 0;
         this.hosts[1] = 0;
+        this.subnetbit[0] = 0;
+        this.subnetbit[1] = 0;
         subNet(k);
         calchosts(k);
    }
@@ -91,14 +96,23 @@ public class HostMatch {
     
     
     
-    private void calsubnet (int h){
+    private void calsubnetbits (int h){
             
-        this.hosts[0] = h;
+        this.subnetbit[0] = h;
         switch (this.hosts[0]){
             
-        }
+        }   
+    }
+    
+    
+    private void calsubnet (){
+      
+            this.sub.clear();
+            this.sub.add(0,Integer.parseInt(this.f1)&Integer.parseInt(this.v[0]));
     
     }
+    
+    
     public String[] getsubN (){
         return this.v;
     }
@@ -109,6 +123,10 @@ public class HostMatch {
     
     public void setcalchosts(int h){
         calchosts(h);
+    }
+    
+    public ArrayList<Integer> getcalsubnet(){
+        return this.sub;
     }
     
 }

@@ -59,12 +59,11 @@ public class MainJFrame extends javax.swing.JFrame {
         TextField3FieldValidation();
         TextField4FieldValidation();
         
-        
-        
     }
     
     RegexMatches Regm = new RegexMatches();
     HostMatch Hostm = new HostMatch();
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -563,7 +562,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel22)
@@ -634,6 +633,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         val_1 = "";
                         val_11 = "";
                         jTextField1.setEditable(true);
+                        jTextField10.setText(fieldpresent("0"));
                         jLabel8.setText("");   
                     }
 
@@ -645,6 +645,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         val_1 = "";
                         val_11 = "";
                         jTextField1.setEditable(true);
+                        jTextField10.setText(fieldpresent("0"));
                         jLabel8.setText("");
                     }
     }//GEN-LAST:event_jTextField1KeyPressed
@@ -661,6 +662,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         val_2 = "";
                         val_21 = "";
                         jTextField2.setEditable(true);
+                        jTextField11.setText(fieldpresent("0"));
                         jLabel8.setText("");   
                     }
 
@@ -672,6 +674,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         val_2 = "";
                         val_21 = "";
                         jTextField2.setEditable(true);
+                        jTextField11.setText(fieldpresent("0"));
                         jLabel8.setText("");
                     }     
     }//GEN-LAST:event_jTextField2KeyPressed
@@ -747,16 +750,16 @@ public class MainJFrame extends javax.swing.JFrame {
                     if (ch >= '0' && ch <= '9')  {
                         jTextField1.setEditable(true);
                         s =  Character.toString(ch);
-                        
                         try{
-                            if (val_11.length() >= 3){
-                                val_11 = val_1;  
-                                //field1change(); // changes the slider position according to input
+                            if (val_11.length() >= 3){                                
+                                val_11 = val_1; 
+                                jTextField10.setText(fieldpresent(val_1));
                             }
                             if (s.isEmpty() == false){
                                 val_11 = val_11.concat(s);         
                             }    
-                            getjTextField1Value(s);    
+                            getjTextField1Value(s); 
+                            
                         }
                         catch(NullPointerException ex){    
                         }   
@@ -779,10 +782,12 @@ public class MainJFrame extends javax.swing.JFrame {
         boolean res;
              
                 res = Regm.compare(val_1);
-                
+                jTextField10.setEditable(false);
+                jTextField10.setText(fieldpresent(s));
                 if (res == true && (Integer.parseInt(val_11) <= Integer.parseInt("223"))){                    
                      val_1 = val_1.concat(s);
-                field1change(); // changes the slider position according to input     
+                    field1change(); // changes the slider position according to input  
+                    jTextField10.setText(fieldpresent(val_1));
                 }
                 else if (val_1.isEmpty() == true){
                     val_1 = val_1.concat(s);
@@ -793,12 +798,14 @@ public class MainJFrame extends javax.swing.JFrame {
                     jLabel8.setText("Invalid Input");
                     jTextField1.setText("223");
                     val_1 = "223";
+                    jTextField10.setText(fieldpresent(val_1));
                     jTextField1.setEditable(false);
                 }
                 else  {
                     jTextField1.setText(null);
                     jTextField1.setText("");
                     jTextField1.setEditable(false);
+                    jTextField10.setText(fieldpresent("0"));
                     val_1 = "";   
                 } 
                 
@@ -828,7 +835,8 @@ public class MainJFrame extends javax.swing.JFrame {
                         
                         try{
                             if (val_21.length() >= 3){
-                                val_21 = val_2;   
+                                val_21 = val_2;  
+                                jTextField11.setText(fieldpresent(val_2));
                             }
                             if (s.isEmpty() == false){
                             val_21 = val_21.concat(s);         
@@ -854,8 +862,11 @@ public class MainJFrame extends javax.swing.JFrame {
         boolean res;
              
                 res = Regm.compare(val_2);
+                jTextField11.setText(fieldpresent(s));
+                jTextField11.setEditable(false);
                 if (res == true && (Integer.parseInt(val_21) < Integer.parseInt("256"))){                    
                      val_2 = val_2.concat(s);
+                     jTextField11.setText(fieldpresent(val_2));
                 }
                 else if (val_2.isEmpty() == true){
                     val_2 = val_2.concat(s);
@@ -865,15 +876,18 @@ public class MainJFrame extends javax.swing.JFrame {
                     jLabel8.setText("Input must be <= 255");
                     jTextField2.setText("255");
                     val_2 = "255";
+                    jTextField11.setText(fieldpresent(val_2));
                     jTextField2.setEditable(false);
                 }
                 else  {
                     jLabel8.setForeground(Color.red); 
                     jLabel8.setText("Invalid Input on 2nd box");
                     jTextField2.setText(null);
-                    jTextField2.setText("");
+                    jTextField2.setText("255");
                     jTextField2.setEditable(false);
-                    val_2 = "";   
+                    
+                    val_2 = "255";  
+                    jTextField11.setText(fieldpresent(val_2));
                 }        
     }
    
@@ -1036,12 +1050,14 @@ public void sliderChanged() {
         //String[] v = Hostm.subNet(k2);
         HostMatch Hostm = new HostMatch(val_1,val_2,val_3,val_4,k2);
         String[] v  = Hostm.getsubN();
+        ArrayList<Integer> v_sub = Hostm.getcalsubnet();
         jLabel7.setText(Integer.parseInt(v[0],2)+"."+Integer.parseInt(v[1],2)+"."+Integer.parseInt(v[2],2)+"."+Integer.parseInt(v[3],2));
         int[] h = Hostm.getcalchosts();
         jTextField14.setText(v[0]);
         jTextField15.setText(v[1]);
         jTextField16.setText(v[2]);
         jTextField17.setText(v[3]);
+        //jTextField18.setText(Integer.toBinaryString(v_sub.get(0)));
         
         if (val_1.isBlank()== true){
             val_1  = "0";
@@ -1086,13 +1102,16 @@ public void sliderChanged() {
         else{
             jTextField7.setText(Integer.toString(h[0]));
             jTextField8.setText(Integer.toString(h[1]));
+            
         }
     } /*Determines whether the user gesture to move the slider's knob is complete.*/  
 }    
 
 
 
-/* Sets the position of the slider according to jTextField4 value*/
+/* Sets the position of the slider according to jTextField1 value*/
+
+
 public void field1change(){
         
         if (val_1.isBlank() == true){
@@ -1123,6 +1142,23 @@ public void field1change(){
             jLabel8.setText("C class Network");
         }
 
+}
+
+public String fieldpresent(String s){
+        int n = Integer.parseInt(s);
+        String k = "";
+        String a = Integer.toBinaryString(n);
+        if (a.length() < 8){
+            for (int i=0; i<(8-a.length());i++){
+                k = k.concat("0");
+            }
+            a=k.concat(a);
+            return a;
+        }
+        else{
+            return a;
+        }
+        
 }
     
     /**
