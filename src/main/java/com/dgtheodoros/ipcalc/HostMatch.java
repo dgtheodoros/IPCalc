@@ -20,16 +20,17 @@ public class HostMatch {
    private  String f3; // IP field
    private  String f4; // IP field
    String[] v = new String[4]; // Netmask
-   int[] hosts = new int [2];
-   int[] subnetbit = new int [2];
+   private int[] hosts = new int [2];
+   private int[] subnetbit = new int [2];
+   private  Integer subbits  = 8 ;
    ArrayList<Integer> sub;
    
-   public HostMatch(){
-        this.sub = new ArrayList<>(4);
-   }
+  // public HostMatch(){
+  //      this.sub = new ArrayList<>(4);
+   //}
    
    public HostMatch (String s1,String s2,String s3,String s4,int k){
-        this.sub = new ArrayList<>(4);
+        this.sub = new ArrayList<>();
         this.v[0] = "";
         this.v[1] = "";
         this.v[2] = "";
@@ -44,6 +45,8 @@ public class HostMatch {
         this.subnetbit[1] = 0;
         subNet(k);
         calchosts(k);
+        calsubnetbits (k,subbits);
+        //calsubnet (this.v);
    }
     
    
@@ -96,19 +99,43 @@ public class HostMatch {
     
     
     
-    private void calsubnetbits (int h){
+    private void calsubnetbits (int h,int d){
             
-        this.subnetbit[0] = h;
-        switch (this.hosts[0]){
-            
-        }   
+                this.subnetbit[0] = h-d;
+                this.subnetbit[1] = (int)(pow(2,(this.subnetbit[0]))); /* Number of subnets*/
+               
     }
     
     
-    private void calsubnet (){
+    private void calsubnet ( String v[]){
       
-            this.sub.clear();
-            this.sub.add(0,Integer.parseInt(this.f1)&Integer.parseInt(this.v[0]));
+            this.sub.clear();            
+            if (this.f1 == ""){
+                this.f1="0";
+            }
+            if (this.f2 == ""){
+                this.f2="0";
+            }
+            if (this.f3 == ""){
+                this.f3="0";
+            }
+            if (this.f4 == ""){
+                this.f4="0";
+            }
+            //int z1 = Integer.parseInt(this.f1);
+           // int z2 = Integer.parseInt(this.v[0],2);
+            int z1= Integer.parseInt(Integer.toBinaryString((Integer.parseInt(this.f1))&(Integer.parseInt(this.v[0],2))),2);
+            int z2= Integer.parseInt(Integer.toBinaryString((Integer.parseInt(this.f2))&(Integer.parseInt(this.v[1],2))),2);
+            int z3= Integer.parseInt(Integer.toBinaryString((Integer.parseInt(this.f3))&(Integer.parseInt(this.v[2],2))),2);
+            int z4= Integer.parseInt(Integer.toBinaryString((Integer.parseInt(this.f4))&(Integer.parseInt(this.v[3],2))),2);
+            this.sub.add(0,z1);
+            this.sub.add(1,z2);
+            this.sub.add(2,z3);
+            this.sub.add(3,z4);
+            this.sub.add(4,z1+(255-Integer.parseInt(this.v[0],2)));
+            this.sub.add(5,z2+(255-Integer.parseInt(this.v[1],2)));
+            this.sub.add(6,z3+(255-Integer.parseInt(this.v[2],2)));
+            this.sub.add(7,z4+(255-Integer.parseInt(this.v[3],2)));
     
     }
     
@@ -121,12 +148,32 @@ public class HostMatch {
         return this.hosts;
     }
     
+    public int[] getcalsubnetbits(){
+        return this.subnetbit;
+    }
+    
     public void setcalchosts(int h){
         calchosts(h);
     }
     
-    public ArrayList<Integer> getcalsubnet(){
+    public ArrayList<Integer> getcalsubnet(String s1,String s2,String s3,String s4){
+        this.f1 = s1;
+        this.f2 = s2;
+        this.f3 = s3;
+        this.f4 = s4;
+        calsubnet (this.v);
         return this.sub;
+    }
+    
+    public void setcalsubnetbits(int h,int d){
+        subbits = d;
+        calsubnetbits(h,d);
+        
+        
+    }
+    
+    public void setsubN (int k){
+        subNet(k);
     }
     
 }
