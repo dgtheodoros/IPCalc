@@ -6,21 +6,34 @@
 package com.dgtheodoros.ipcalc;
 
 
+//import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
+//import java.awt.GridBagLayout;
+//import java.awt.GridLayout;
+//import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.io.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+//import java.awt.event.MouseListener;
+//import java.awt.event.MouseMotionListener;
+//import java.io.*;
+//import java.util.logging.Level;
+//import java.util.logging.Logger;
+//import java.io.BufferedReader;
+//import java.io.InputStream;
+//import java.io.InputStreamReader;
+//import static java.lang.Math.pow;
+//import java.net.MalformedURLException;
+//import java.net.URL;
 import java.util.ArrayList;
-import java.util.Scanner;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Caret;
+//import java.util.Scanner;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+//import javax.swing.event.ChangeEvent;
+//import javax.swing.text.BadLocationException;
+//import javax.swing.text.Caret;
+//import java.util.concurrent.TimeUnit;
+//import javax.swing.ImageIcon;
+//import javax.swing.JLabel;
+//import javax.swing.JPanel;
 /**
  *
  * @author Theo
@@ -35,19 +48,27 @@ public class MainJFrame extends javax.swing.JFrame {
     private static String val_31 = "";
     private static String val_4 = "";
     private static String val_41 = "";
+    private static int s_current;
+    
     
     /**
      * Creates new form MainJFrame
      */
     public MainJFrame() {
+        
         initComponents();
         TextField1FieldValidation();
         TextField2FieldValidation();
         TextField3FieldValidation();
         TextField4FieldValidation();
+        initSecondaryComponents();
+        
     }
     
     RegexMatches Regm = new RegexMatches();
+    //HostMatch Hostm = new HostMatch();
+    HostMatch Hostm = new HostMatch(val_1,val_2,val_3,val_4,16);
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,6 +78,7 @@ public class MainJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
@@ -69,6 +91,55 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jTextField10 = new javax.swing.JTextField();
+        jTextField11 = new javax.swing.JTextField();
+        jTextField12 = new javax.swing.JTextField();
+        jTextField13 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField14 = new javax.swing.JTextField();
+        jTextField15 = new javax.swing.JTextField();
+        jTextField16 = new javax.swing.JTextField();
+        jTextField17 = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jTextField18 = new javax.swing.JTextField();
+        jTextField19 = new javax.swing.JTextField();
+        jTextField20 = new javax.swing.JTextField();
+        jTextField21 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
+        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField22 = new javax.swing.JTextField();
+        jTextField23 = new javax.swing.JTextField();
+        jTextField24 = new javax.swing.JTextField();
+        jTextField25 = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,76 +187,443 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel5.setText("/");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("24");
+        jLabel6.setText("16");
 
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("jLabel8");
+
+        jSlider1.setMajorTickSpacing(8);
+        jSlider1.setMaximum(32);
+        jSlider1.setMinorTickSpacing(1);
+        jSlider1.setPaintLabels(true);
+        jSlider1.setPaintTicks(true);
+        jSlider1.setToolTipText("Drag Right or Left to change netmask");
+        jSlider1.setValue(16);
+        jSlider1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addGap(135, 135, 135)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(199, 199, 199)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(44, 44, 44)
+                        .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(27, 27, 27))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(31, 31, 31)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(32, 32, 32)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jTextField3)
-                                    .addComponent(jTextField2)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel8)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jTextField3)
+                                        .addComponent(jTextField2)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jSlider1.addChangeListener(e -> sliderChanged());
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("255.255.0.0");
+        jLabel7.setAlignmentX(0.5F);
+        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Subnet Mask");
+
+        jTextField5.setText("jTextField5");
+
+        jLabel10.setText("Subnet bits:");
+
+        jTextField6.setText("jTextField6");
+
+        jLabel11.setText("Max Subnets:");
+
+        jTextField7.setText("jTextField7");
+
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Host bits:");
+
+        jTextField8.setText("jTextField8");
+
+        jLabel13.setText("Max Addresses:");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                    .addComponent(jTextField5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                    .addComponent(jTextField8))
+                .addGap(84, 84, 84)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(4, 4, 4)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10)
+                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
+                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(22, 22, 22))
+        );
+
+        jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jTextField9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jTextField9.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField9.setText("jTextField9");
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Current Host Range");
+
+        jLabel15.setText("Current Network:");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel16.setText("jLabel16");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94))))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel14)
+                .addGap(5, 5, 5)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        jLabel17.setText("Host");
+
+        jTextField10.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField10.setText("jTextField10");
+
+        jTextField11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField11.setText("jTextField11");
+
+        jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField12.setText("jTextField12");
+
+        jTextField13.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField13.setText("jTextField13");
+
+        jLabel18.setText("Mask     ");
+
+        jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField14.setText("jTextField14");
+
+        jTextField15.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField15.setText("jTextField15");
+
+        jTextField16.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField16.setText("jTextField16");
+
+        jTextField17.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField17.setText("jTextField17");
+
+        jLabel19.setText("Subnet");
+
+        jTextField18.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField18.setText("jTextField18");
+
+        jTextField19.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField19.setText("jTextField19");
+
+        jTextField20.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField20.setText("jTextField20");
+
+        jTextField21.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField21.setText("jTextField21");
+
+        jSeparator1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLabel20.setText("Subnet");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel21.setText("jLabel21");
+
+        jLabel22.setText("Broadcast");
+
+        jTextField22.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField22.setText("jTextField22");
+
+        jTextField23.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField23.setText("jTextField23");
+
+        jTextField24.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField24.setText("jTextField24");
+
+        jTextField25.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField25.setText("jTextField25");
+
+        jLabel23.setText("Broadcast");
+
+        jLabel24.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel24.setText("jLabel24");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(192, 192, 192)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addComponent(jLabel19)
+                                    .addGap(26, 26, 26)
+                                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel23)
+                            .addComponent(jLabel22))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel20)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)
+                        .addComponent(filler1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
+
+        jMenu1.setText("File");
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 355, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
 
         pack();
@@ -203,7 +641,12 @@ public class MainJFrame extends javax.swing.JFrame {
                         val_1 = "";
                         val_11 = "";
                         jTextField1.setEditable(true);
+                        jTextField10.setText(fieldpresent("0"));
                         jLabel8.setText("");   
+                        try{
+                           field1change();
+                        }
+                        catch (NumberFormatException e){} 
                     }
 
                     if(evt.getKeyCode() == KeyEvent.VK_ESCAPE)
@@ -214,12 +657,13 @@ public class MainJFrame extends javax.swing.JFrame {
                         val_1 = "";
                         val_11 = "";
                         jTextField1.setEditable(true);
-                        jLabel8.setText("");
+                        jTextField10.setText(fieldpresent("0"));
+                        jLabel8.setText("");                       
                     }
     }//GEN-LAST:event_jTextField1KeyPressed
-/*----------------------------- TextField 1 End -----------------------   ---- */
+/*----------------------------- TextField 1 End ----------------------------- */
     
-/*- ---------------------------- TextField 2 Start --------------------------- */   
+/*- ---------------------------- TextField 2 Start ---------------------------*/   
     /*When backspase or Del Keys  are pressed */
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         // TODO add your handling code here:
@@ -230,6 +674,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         val_2 = "";
                         val_21 = "";
                         jTextField2.setEditable(true);
+                        jTextField11.setText(fieldpresent("0"));
                         jLabel8.setText("");   
                     }
 
@@ -241,6 +686,7 @@ public class MainJFrame extends javax.swing.JFrame {
                         val_2 = "";
                         val_21 = "";
                         jTextField2.setEditable(true);
+                        jTextField11.setText(fieldpresent("0"));
                         jLabel8.setText("");
                     }     
     }//GEN-LAST:event_jTextField2KeyPressed
@@ -299,7 +745,8 @@ public class MainJFrame extends javax.swing.JFrame {
                     }
         
     }//GEN-LAST:event_jTextField4KeyPressed
-/*----------------------------- TextField 4 End ----------------------------- */ 
+
+
     
     
 /* ----------------------------- TextField 1 Start --------------------------- */    
@@ -315,15 +762,18 @@ public class MainJFrame extends javax.swing.JFrame {
                     if (ch >= '0' && ch <= '9')  {
                         jTextField1.setEditable(true);
                         s =  Character.toString(ch);
-                        
                         try{
-                            if (val_11.length() >= 3){
-                                val_11 = val_1;   
+                            if (val_11.length() >= 3){                                
+                                val_11 = val_1; 
+                                jTextField10.setText(fieldpresent(val_1));
+                               // ArrayList<Integer> v_sub = Hostm.getcalsubnet(val_1);
+                               // jTextField18.setText(fieldpresent(Integer.toString(v_sub.get(0))));
                             }
                             if (s.isEmpty() == false){
-                            val_11 = val_11.concat(s);         
-                        }    
-                            getjTextField1Value(s);    
+                                val_11 = val_11.concat(s);         
+                            }    
+                            getjTextField1Value(s); 
+                            
                         }
                         catch(NullPointerException ex){    
                         }   
@@ -332,10 +782,12 @@ public class MainJFrame extends javax.swing.JFrame {
                         jTextField1.setEditable(false);
                         jTextField1.setText("");
 
-                    }                    
+                    }    
+                     
             }          
-        });         
+        });    
          
+           
     }//end of method
                          
     
@@ -344,31 +796,50 @@ public class MainJFrame extends javax.swing.JFrame {
         boolean res;
              
                 res = Regm.compare(val_1);
+                jTextField10.setEditable(false);
+                jTextField10.setText(fieldpresent(s));
                 if (res == true && (Integer.parseInt(val_11) <= Integer.parseInt("223"))){                    
                      val_1 = val_1.concat(s);
+                    field1change(); // changes the slider position according to input  
+                    jTextField10.setText(fieldpresent(val_1));
+                    //ArrayList<Integer> v_sub = Hostm.getcalsubnet(val_1);
+                   //jTextField18.setText(fieldpresent(Integer.toString(v_sub.get(0))));
+                   //range(Hostm,val_1,val_2,val_3,val_4);
+                    
                 }
                 else if (val_1.isEmpty() == true){
                     val_1 = val_1.concat(s);
+                    field1change(); // changes the slider position according to input
+                    //ArrayList<Integer> v_sub = Hostm.getcalsubnet(val_1);
+                    //jTextField18.setText(fieldpresent(Integer.toString(v_sub.get(0))));
+                    //range(Hostm,val_1,val_2,val_3,val_4);
                 } 
                 else if (res == true || (Integer.parseInt(val_11) > Integer.parseInt("223"))){
                     jLabel8.setForeground(Color.red); 
                     jLabel8.setText("Invalid Input");
                     jTextField1.setText("223");
                     val_1 = "223";
+                    jTextField10.setText(fieldpresent(val_1));
+                    //ArrayList<Integer> v_sub = Hostm.getcalsubnet(val_1);
+                    //jTextField18.setText(fieldpresent(Integer.toString(v_sub.get(0))));
+                    range(Hostm,val_1,val_2,val_3,val_4);
                     jTextField1.setEditable(false);
                 }
                 else  {
-                    jTextField1.setText(null);
+                    //jTextField1.setText(null);
                     jTextField1.setText("");
                     jTextField1.setEditable(false);
+                    jTextField10.setText(fieldpresent("0"));
                     val_1 = "";   
-                }        
+                } 
+                
+                
     }
    
-/*----------------------------- TextField 1 End --------------------------- */    
+/*----------------------------- TextField 1 End ----------------------------- */    
     
     
- /*----------------------------- TextField 2 Start --------------------------- */
+/*----------------------------- TextField 2 Start --------------------------- */
     
                                         
 
@@ -388,7 +859,8 @@ public class MainJFrame extends javax.swing.JFrame {
                         
                         try{
                             if (val_21.length() >= 3){
-                                val_21 = val_2;   
+                                val_21 = val_2;  
+                                jTextField11.setText(fieldpresent(val_2));
                             }
                             if (s.isEmpty() == false){
                             val_21 = val_21.concat(s);         
@@ -414,26 +886,34 @@ public class MainJFrame extends javax.swing.JFrame {
         boolean res;
              
                 res = Regm.compare(val_2);
+                jTextField11.setText(fieldpresent(s));
+                jTextField11.setEditable(false);
                 if (res == true && (Integer.parseInt(val_21) < Integer.parseInt("256"))){                    
                      val_2 = val_2.concat(s);
+                     jTextField11.setText(fieldpresent(val_2));
+                     range(Hostm,val_1,val_2,val_3,val_4);
                 }
                 else if (val_2.isEmpty() == true){
                     val_2 = val_2.concat(s);
+                    range(Hostm,val_1,val_2,val_3,val_4);
                 }
                 else if (res == true && (Integer.parseInt(val_21) >= Integer.parseInt("256"))){
                     jLabel8.setForeground(Color.red); 
                     jLabel8.setText("Input must be <= 255");
                     jTextField2.setText("255");
                     val_2 = "255";
+                    jTextField11.setText(fieldpresent(val_2));
+                    range(Hostm,val_1,val_2,val_3,val_4);
                     jTextField2.setEditable(false);
                 }
                 else  {
                     jLabel8.setForeground(Color.red); 
-                    jLabel8.setText("Invalid Input on 2nd box");
-                    jTextField2.setText(null);
-                    jTextField2.setText("");
+                    jLabel8.setText("Invalid Input on 2nd box");                    
+                    jTextField2.setText("255");
                     jTextField2.setEditable(false);
-                    val_2 = "";   
+                    val_2 = "255";  
+                    jTextField11.setText(fieldpresent(val_2));
+                    range(Hostm,val_1,val_2,val_3,val_4);
                 }        
     }
    
@@ -456,7 +936,8 @@ public class MainJFrame extends javax.swing.JFrame {
                         
                         try{
                             if (val_31.length() >= 3){
-                                val_31 = val_3;   
+                                val_31 = val_3;
+                                jTextField12.setText(fieldpresent(val_3));
                             }
                             if (s.isEmpty() == false){
                             val_31 = val_31.concat(s);         
@@ -482,26 +963,34 @@ public class MainJFrame extends javax.swing.JFrame {
         boolean res;
              
                 res = Regm.compare(val_3);
+                jTextField12.setText(fieldpresent(s));
+                jTextField12.setEditable(false);
                 if (res == true && (Integer.parseInt(val_31) < Integer.parseInt("256"))){                    
                      val_3 = val_3.concat(s);
+                     jTextField12.setText(fieldpresent(val_3));
+                     range(Hostm,val_1,val_2,val_3,val_4);
                 }
                 else if (val_3.isEmpty() == true){
                     val_3 = val_3.concat(s);
+                    range(Hostm,val_1,val_2,val_3,val_4);
                 }
                 else if (res == true && (Integer.parseInt(val_31) >= Integer.parseInt("256"))){
                     jLabel8.setForeground(Color.red); 
                     jLabel8.setText("Input must be <= 255");
                     jTextField3.setText("255");
                     val_3 = "255";
+                    jTextField12.setText(fieldpresent(val_3));
+                    range(Hostm,val_1,val_2,val_3,val_4);
                     jTextField3.setEditable(false);
                 }
                 else  {
                     jLabel8.setForeground(Color.red); 
                     jLabel8.setText("Invalid Input on 3rd box");
-                    jTextField3.setText(null);
-                    jTextField3.setText("");
+                    jTextField3.setText("255");
                     jTextField3.setEditable(false);
-                    val_3 = "";   
+                    val_3 = "255";
+                    jTextField12.setText(fieldpresent(val_3));
+                    range(Hostm,val_1,val_2,val_3,val_4);
                 }        
     }
        
@@ -527,7 +1016,8 @@ public class MainJFrame extends javax.swing.JFrame {
                         
                         try{
                             if (val_41.length() >= 3){
-                                val_41 = val_4;   
+                                val_41 = val_4; 
+                                jTextField13.setText(fieldpresent(val_4));
                             }
                             if (s.isEmpty() == false){
                             val_41 = val_41.concat(s);         
@@ -553,32 +1043,260 @@ public class MainJFrame extends javax.swing.JFrame {
         boolean res;
              
                 res = Regm.compare(val_4);
+                jTextField13.setText(fieldpresent(s));
+                jTextField13.setEditable(false);
                 if (res == true && (Integer.parseInt(val_41) < Integer.parseInt("256"))){                    
                      val_4 = val_4.concat(s);
+                     jTextField13.setText(fieldpresent(val_4));
+                     range(Hostm,val_1,val_2,val_3,val_4);
                 }
                 else if (val_4.isEmpty() == true){
                     val_4 = val_4.concat(s);
+                    range(Hostm,val_1,val_2,val_3,val_4);
                 }
                 else if (res == true && (Integer.parseInt(val_41) >= Integer.parseInt("256"))){
                     jLabel8.setForeground(Color.red); 
                     jLabel8.setText("Input must be <= 255");
                     jTextField4.setText("255");
                     val_4 = "255";
+                    jTextField13.setText(fieldpresent(val_4));
+                    range(Hostm,val_1,val_2,val_3,val_4);
                     jTextField4.setEditable(false);
                 }
                 else  {
                     jLabel8.setForeground(Color.red); 
                     jLabel8.setText("Invalid Input on 4th box");
-                    jTextField4.setText(null);
-                    jTextField4.setText("");
+                    jTextField4.setText("255");
                     jTextField4.setEditable(false);
-                    val_4 = "";   
+                    val_4 = "255"; 
+                    jTextField13.setText(fieldpresent(val_4));
+                    range(Hostm,val_1,val_2,val_3,val_4);
                 }        
     }    
     
     
 /*----------------------------- TextField 4 End ----------------------------- */    
-    
+
+
+public void sliderChanged() {
+    int k1,k2;
+       
+        k1 = jSlider1.getValue();
+        jLabel6.setText(Integer.toString(k1));
+    if (jSlider1.getValueIsAdjusting()){    /*Determines whether the user gesture to move the slider's knob is complete.*/
+        k2 = jSlider1.getValue();
+        if (k1<k2){
+            jLabel6.setText(Integer.toString(k2));
+        }
+        else{
+            jLabel6.setText(Integer.toString(k2));
+        }
+        //String[] v = Hostm.subNet(k2);
+        try{   // catch exception for empty values  val_1,val_2,val_3,val_4
+            HostMatch Hostm1 = new HostMatch(val_1,val_2,val_3,val_4,k2);
+
+            Hostm = Hostm1;
+            String[] v  = Hostm1.getsubN(); 
+            jLabel7.setText(Integer.parseInt(v[0],2)+"."+Integer.parseInt(v[1],2)+"."+Integer.parseInt(v[2],2)+"."+Integer.parseInt(v[3],2));
+            int[] h = Hostm1.getcalchosts();
+            Hostm1.setcalsubnetbits(k2,s_current);
+            int[] k = Hostm1.getcalsubnetbits();
+            jTextField14.setText(v[0]);
+            jTextField15.setText(v[1]);
+            jTextField16.setText(v[2]);
+            jTextField17.setText(v[3]);
+            range(Hostm1,val_1,val_2,val_3,val_4);
+
+
+          //  if (val_1.isBlank()== true){
+          //      val_1  = "0";
+          //  }
+
+
+            if ( ((Integer.parseInt(val_1) < 128) ) && (k2 < 8) ){
+                        jTextField5.setText("");
+                        jTextField6.setText("");
+                        jTextField7.setText("");
+                        jTextField8.setText("");
+
+
+                    if (h[0]==32){
+
+                    JFrame frame = new JFrame();
+
+                   /* try {
+                        TimeUnit.SECONDS.sleep(1);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+                    }*/
+                   //ImageIcon icon = new ImageIcon(getClass().getResource("/yoda-icon-6.jpg"));
+                   //JLabel label = new JLabel(icon);
+                   //frame.setIconImage(icon.getImage());
+                   JOptionPane.showMessageDialog(frame,"Eggs are not supposed to be green.");
+                    //JOptionPane.showMessageDialog(frame,"Eggs are not supposed to be green.","WOW",JOptionPane.INFORMATION_MESSAGE,icon);
+
+                    //jTextField7.setText("");
+                    //jTextField8.setText("");          
+                    }
+             }       
+            else if ( (128 <= Integer.parseInt(val_1) && Integer.parseInt(val_1) < 192)  && (k2 < 16) ){
+                jTextField5.setText("");
+                jTextField6.setText("");
+                jTextField7.setText("");
+                jTextField8.setText("");
+
+            }
+            else if ( (192 <= Integer.parseInt(val_1) && Integer.parseInt(val_1) < 224)  && (k2 < 24) ){
+                jTextField5.setText("");
+                jTextField6.setText("");
+                jTextField7.setText("");
+                jTextField8.setText("");
+
+            }
+            else{
+                jTextField5.setText(Integer.toString(k[0]));
+                jTextField6.setText(Integer.toString(k[1]));
+                jTextField7.setText(Integer.toString(h[0]));
+                jTextField8.setText(Integer.toString(h[1]));
+
+
+            }
+        }
+        catch(NumberFormatException e){}
+    } /*Determines whether the user gesture to move the slider's knob is complete.*/  
+}    
+
+
+
+/* Sets the position of the slider according to jTextField1 value*/
+
+
+public void field1change(){
+         
+        
+       // if (val_1.isBlank() == true){
+       //     val_1  = "0";
+       // }
+        //if (val_11.isBlank() == true){
+        //    val_11  = "0";
+        //}
+        
+       if ( jSlider1.getValue() <= 8){
+                //HostMatch Hostm2 = new HostMatch(val_1,val_2,val_3,val_4,jSlider1.getValue());
+                //Hostm = Hostm2;
+               // String[] v  = Hostm.getsubN();
+               // jTextField14.setText(v[0]);
+              range(Hostm,val_1,val_2,val_3,val_4);
+        }
+       else  if (Integer.parseInt(val_11) < 128  ){   //&& jSlider1.getValue() <= 8
+            jSlider1.setValue(8);
+            s_current = 8;
+            Hostm.setcalchosts(8);
+            Hostm.setcalsubnetbits(8,s_current);
+            int[] h = Hostm.getcalchosts();
+            int[] k = Hostm.getcalsubnetbits();
+            jTextField5.setText(Integer.toString(k[0]));
+            jTextField6.setText(Integer.toString(k[1]));
+            jTextField7.setText(Integer.toString(h[0]));
+            jTextField8.setText(Integer.toString(h[1]));
+            jLabel8.setText("A class Network");
+            range(Hostm,val_1,val_2,val_3,val_4);   
+        }
+        
+        
+        
+        if (128 <= Integer.parseInt(val_11) && Integer.parseInt(val_11) < 192 && jSlider1.getValue() <= 16){
+            jSlider1.setValue(16); 
+            s_current = 16;
+            Hostm.setcalchosts(16);
+            Hostm.setcalsubnetbits(16,s_current);
+            int[] h = Hostm.getcalchosts();
+            int[] k = Hostm.getcalsubnetbits();
+            jTextField5.setText(Integer.toString(k[0]));
+            jTextField6.setText(Integer.toString(k[1]));
+            jTextField7.setText(Integer.toString(h[0]));
+            jTextField8.setText(Integer.toString(h[1]));
+            jLabel8.setText("B class Network");
+            
+        }
+        if (192 <= Integer.parseInt(val_11) && Integer.parseInt(val_11) < 224 && jSlider1.getValue() <= 24){
+            jSlider1.setValue(24);
+            s_current = 24;
+            Hostm.setcalchosts(24);
+            Hostm.setcalsubnetbits(24,s_current);
+            int[] h = Hostm.getcalchosts();
+            int[] k = Hostm.getcalsubnetbits();
+            jTextField5.setText(Integer.toString(k[0]));
+            jTextField6.setText(Integer.toString(k[1]));
+            jTextField7.setText(Integer.toString(h[0]));
+            jTextField8.setText(Integer.toString(h[1]));
+            jLabel8.setText("C class Network");
+        }
+     
+
+}
+
+/* Method that makes better presentable binaty host field format*/
+public String fieldpresent(String s){
+        int n = Integer.parseInt(s);
+        String k = "";
+        String a = Integer.toBinaryString(n);
+        if (a.length() < 8){
+            for (int i=0; i<(8-a.length());i++){
+                k = k.concat("0");
+            }
+            a=k.concat(a);
+            return a;
+        }
+        else{
+            return a;
+        }
+        
+}
+
+public void range(HostMatch b,String s1,String s2,String s3,String s4){
+
+        ArrayList<Integer> v_sub = b.getcalsubnet(s1,s2,s3,s4);
+        jTextField18.setText(fieldpresent(Integer.toString(v_sub.get(0))));
+        jTextField19.setText(fieldpresent(Integer.toString(v_sub.get(1))));
+        jTextField20.setText(fieldpresent(Integer.toString(v_sub.get(2))));
+        jTextField21.setText(fieldpresent(Integer.toString(v_sub.get(3))));
+        jLabel21.setText(Integer.toString(v_sub.get(0))+"."+Integer.toString(v_sub.get(1))+"."+Integer.toString(v_sub.get(2))+"."+Integer.toString(v_sub.get(3)));
+        jLabel16.setText(Integer.toString(v_sub.get(0))+"."+Integer.toString(v_sub.get(1))+"."+Integer.toString(v_sub.get(2))+"."+Integer.toString(v_sub.get(3)));
+        jTextField22.setText(fieldpresent(Integer.toString(v_sub.get(4))));
+        jTextField23.setText(fieldpresent(Integer.toString(v_sub.get(5))));
+        jTextField24.setText(fieldpresent(Integer.toString(v_sub.get(6))));
+        jTextField25.setText(fieldpresent(Integer.toString(v_sub.get(7))));
+        jLabel24.setText(Integer.toString(v_sub.get(4))+"."+Integer.toString(v_sub.get(5))+"."+Integer.toString(v_sub.get(6))+"."+Integer.toString(v_sub.get(7)));
+        String r1 = Integer.toString(v_sub.get(0))+"."+Integer.toString(v_sub.get(1))+"."+Integer.toString(v_sub.get(2))+"."+Integer.toString(v_sub.get(3)+1);
+        String r2 = Integer.toString(v_sub.get(4))+"."+Integer.toString(v_sub.get(5))+"."+Integer.toString(v_sub.get(6))+"."+Integer.toString(v_sub.get(7)-1);
+        jTextField9.setText(r1+" to "+r2);
+        
+}
+
+
+public void initSecondaryComponents(){
+        HostMatch InitHostm = new HostMatch(val_1,val_2,val_3,val_4,jSlider1.getValue());
+        String[] v  = InitHostm.getsubN();
+        jLabel8.setText("");
+        jTextField10.setText(val_1);
+        jTextField11.setText(val_2);
+        jTextField12.setText(val_3);
+        jTextField13.setText(val_4);
+        jTextField14.setText(v[0]);
+        jTextField15.setText(v[1]);
+        jTextField16.setText(v[2]);
+        jTextField17.setText(v[3]);
+        int[] h = InitHostm.getcalchosts();
+        jTextField7.setText(Integer.toString(h[0]));
+        jTextField8.setText(Integer.toString(h[1]));
+        s_current = 8;
+        InitHostm.setcalsubnetbits(jSlider1.getValue(),s_current);
+        int[] k = InitHostm.getcalsubnetbits();
+        jTextField5.setText(Integer.toString(k[0]));
+        jTextField6.setText(Integer.toString(k[1]));
+        range(InitHostm,val_1,val_2,val_3,val_4);
+}
     
     /**
      * @param args the command line arguments
@@ -619,18 +1337,68 @@ public class MainJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.Box.Filler filler1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSlider jSlider1;
     public javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField10;
+    private javax.swing.JTextField jTextField11;
+    private javax.swing.JTextField jTextField12;
+    private javax.swing.JTextField jTextField13;
+    private javax.swing.JTextField jTextField14;
+    private javax.swing.JTextField jTextField15;
+    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField jTextField17;
+    private javax.swing.JTextField jTextField18;
+    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField20;
+    private javax.swing.JTextField jTextField21;
+    private javax.swing.JTextField jTextField22;
+    private javax.swing.JTextField jTextField23;
+    private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 
     
