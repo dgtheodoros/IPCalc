@@ -27,6 +27,7 @@ import java.util.ArrayList;
 //import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import java.lang.Math;
 //import javax.swing.event.ChangeEvent;
 //import javax.swing.text.BadLocationException;
 //import javax.swing.text.Caret;
@@ -484,7 +485,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.LEADING);
         jButton2.setIconTextGap(3);
-        jButton2.setPreferredSize(new java.awt.Dimension(117, 39));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -647,12 +652,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -783,6 +786,11 @@ public class MainJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         nextSub (Hostm,val_1,val_2,val_3,val_4);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        prevSub (Hostm,val_1,val_2,val_3,val_4);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     
@@ -1371,6 +1379,36 @@ public void nextSub (HostMatch b,String s1,String s2,String s3,String s4){
         range(Hostm,val_1,val_2,val_3,val_4);
 
 }
+
+public void prevSub (HostMatch b,String s1,String s2,String s3,String s4){
+
+        int i;
+        ArrayList<Integer> v_sub = b.getcalsubnet(s1,s2,s3,s4);
+        //int[] h = b.getcalchosts();
+        if (v_sub.get(3) > 0 && jSlider1.getValue()> 24){
+            i = v_sub.get(7)- v_sub.get(3);
+            val_4 = Integer.toString(Integer.parseInt(s4)-i-1);
+        }
+        if (v_sub.get(3) == 0 && jSlider1.getValue() > 24){
+             i  = Integer.parseInt(s3)-1;
+             val_3 = Integer.toString(i);
+             i = v_sub.get(7)- v_sub.get(3);
+             val_4 = Integer.toString(Math.abs(Integer.parseInt("0")-i-1));
+        }
+        
+        
+        jTextField1.setText(val_1);
+        jTextField2.setText(val_2);
+        jTextField3.setText(val_3);
+        jTextField4.setText(val_4);
+        jTextField10.setText(fieldpresent(val_1));
+        jTextField11.setText(fieldpresent(val_2));
+        jTextField12.setText(fieldpresent(val_3));          
+        jTextField13.setText(fieldpresent(val_4));
+        HostMatch Init1 = new HostMatch(val_1,val_2,val_3,val_4,jSlider1.getValue());
+        Hostm = Init1;
+        range(Hostm,val_1,val_2,val_3,val_4);
+}        
 
 public void initSecondaryComponents(){
         HostMatch InitHostm = new HostMatch(val_1,val_2,val_3,val_4,jSlider1.getValue());
