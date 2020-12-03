@@ -6,7 +6,7 @@
 package com.dgtheodoros.ipcalc;
 
 import static java.lang.Math.pow;
-import java.lang.reflect.Array;
+//import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
