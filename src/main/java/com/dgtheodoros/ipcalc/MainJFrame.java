@@ -129,7 +129,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -631,9 +630,6 @@ public class MainJFrame extends javax.swing.JFrame {
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu_icon_icon-icons.com_32.png"))); // NOI18N
-
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
 
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/info-square_16px.png"))); // NOI18N
         jMenuItem3.setText("Info");
@@ -1583,7 +1579,6 @@ public void initSecondaryComponents(){
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;

@@ -7,9 +7,10 @@ package com.dgtheodoros.ipcalc;
 
 
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+//import java.io.File;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -37,9 +38,10 @@ public class InfoIPCalc extends JFrame {
        JTextArea jTextArea1 = new javax.swing.JTextArea();
        jTextArea1.setColumns(50);
        jTextArea1.setRows(10);
-       jTextArea1.setEditable(true);
+       jTextArea1.setEditable(false);
        setIconImage(ImageIO.read(new File("src\\main\\resources\\ip-adress-64.png")));
        setTitle("IP Calculator");
+       setResizable(false);
        try {
             // Read some text from the resource file to display in
             // the JTextArea.
