@@ -61,6 +61,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initSecondaryComponents();
         setIconImage(ImageIO.read(new File("src\\main\\resources\\ip-adress-64.png")));
         setTitle("IP Calculator");
+        setResizable(false);
         
     }
     
