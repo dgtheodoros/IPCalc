@@ -20,6 +20,7 @@
 package com.dgtheodoros.ipcalc;
 
 import static java.lang.Math.pow;
+
 //import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class HostMatch {
    String[] v = new String[4]; // Netmask
    private int[] hosts = new int [2];
    private int[] subnetbit = new int [2];
+   private long subnetbit_cidr;
    private  Integer subbits  = 8 ;
    ArrayList<Integer> sub;
    
@@ -57,6 +59,7 @@ public class HostMatch {
         this.hosts[1] = 0;
         this.subnetbit[0] = 0;
         this.subnetbit[1] = 0;
+        this.subnetbit_cidr = 0;
         subNet(k);
         calchosts(k);
         calsubnetbits (k,subbits);
@@ -106,7 +109,8 @@ public class HostMatch {
                 this.hosts[1] = 1;
                 break;
             default:    
-            this.hosts[1] = (int)((pow(2,(this.hosts[0])))-2); /* Number of hosts*/           
+            this.hosts[1] = (int)((pow(2,(this.hosts[0])))-2); /* Number of hosts*/     
+            
         }
         
     }
@@ -117,7 +121,9 @@ public class HostMatch {
             
                 this.subnetbit[0] = h-d;
                 this.subnetbit[1] = (int)(pow(2,(this.subnetbit[0]))); /* Number of subnets*/
-               
+                this.subnetbit_cidr = (long)(pow(2,32-h)); /* Number of subnets for CIDR*/
+                
+
     }
     
     
@@ -166,6 +172,9 @@ public class HostMatch {
         return this.subnetbit;
     }
     
+    public long getsubnetbit_cidr(){
+        return subnetbit_cidr;
+    }
     public void setcalchosts(int h){
         calchosts(h);
     }

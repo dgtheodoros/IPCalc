@@ -22,6 +22,7 @@ package com.dgtheodoros.ipcalc;
 
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.io.*;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import javax.imageio.ImageIO;
  *
  * @author Theo
  */
-public class MainJFrame extends javax.swing.JFrame {
+public class MainJFrame extends javax.swing.JFrame implements PassFields {
 
     private static String val_1 = "";
     private static String val_11 = "";
@@ -50,6 +51,7 @@ public class MainJFrame extends javax.swing.JFrame {
     
     /**
      * Creates new form MainJFrame
+     * @throws java.lang.Exception
      */
     public MainJFrame() throws Exception {
         
@@ -63,6 +65,28 @@ public class MainJFrame extends javax.swing.JFrame {
         setTitle("IP Calculator");
         setResizable(false);
         
+    }
+    
+    //Implement Interface's methods
+    @Override
+    public String ValField1(){
+        return jTextField1.getText();
+    }
+    @Override
+    public String ValField2(){
+        return jTextField2.getText();
+    }
+    @Override
+    public String ValField3(){
+        return jTextField3.getText();
+    }
+    @Override
+    public String ValField4(){
+        return jTextField4.getText();
+    }
+    @Override
+    public  int ValSlider(){
+        return jSlider1.getValue();
     }
     
     RegexMatches Regm = new RegexMatches();
@@ -128,7 +152,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jTextField19 = new javax.swing.JTextField();
         jTextField20 = new javax.swing.JTextField();
         jTextField21 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 0), new java.awt.Dimension(0, 0), new java.awt.Dimension(32767, 0));
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -144,6 +167,7 @@ public class MainJFrame extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -153,6 +177,11 @@ public class MainJFrame extends javax.swing.JFrame {
         jLabel1.setText("IP address:");
 
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField1KeyPressed(evt);
@@ -462,8 +491,6 @@ public class MainJFrame extends javax.swing.JFrame {
         jTextField21.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField21.setText("jTextField21");
 
-        jSeparator1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         jLabel20.setText("Subnet");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -553,18 +580,16 @@ public class MainJFrame extends javax.swing.JFrame {
                                                 .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(jPanel5Layout.createSequentialGroup()
-                                            .addComponent(jLabel19)
-                                            .addGap(26, 26, 26)
-                                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(jPanel5Layout.createSequentialGroup()
+                                        .addComponent(jLabel19)
+                                        .addGap(26, 26, 26)
+                                        .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(35, 35, 35)
                                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -615,9 +640,7 @@ public class MainJFrame extends javax.swing.JFrame {
                             .addComponent(jLabel20)
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 22, Short.MAX_VALUE)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 34, Short.MAX_VALUE)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -646,6 +669,15 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Menu_icon_icon-icons.com_32.png"))); // NOI18N
 
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/tap_16.png"))); // NOI18N
+        jMenuItem1.setText("CIDR");
+        jMenuItem1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItem1MousePressed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/info-square_16px.png"))); // NOI18N
         jMenuItem3.setText("Info");
         jMenuItem3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -657,6 +689,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/exit_16px.png"))); // NOI18N
         jMenuItem2.setText("Exit");
+        jMenuItem2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItem2MousePressed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
@@ -842,6 +879,35 @@ public class MainJFrame extends javax.swing.JFrame {
         //NewJFrame1111 info  = new NewJFrame1111(this);
         //info.setVisible(true);
     }//GEN-LAST:event_jMenuItem3MousePressed
+
+    private void jMenuItem1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem1MousePressed
+        // TODO add your handling code here:
+        
+        CIDRJFrame cidr;
+        try {
+            
+            //cidr = new CIDRJFrame(this);
+            cidr = new CIDRJFrame();
+            cidr.setVisible(true);
+            this.setVisible(false);
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(CIDRJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+        
+    }//GEN-LAST:event_jMenuItem1MousePressed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jMenuItem2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem2MousePressed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem2MousePressed
 
 
     
@@ -1215,7 +1281,8 @@ public void sliderChanged() {
                         jTextField6.setText("");
                         jTextField7.setText("");
                         jTextField8.setText("");
-
+                        jLabel8.setText("Supernetting");
+                        jLabel8.setFont(jLabel8.getFont().deriveFont(Font.BOLD));
 
                     if (h[0]==32){
 
@@ -1241,6 +1308,8 @@ public void sliderChanged() {
                 jTextField6.setText("");
                 jTextField7.setText("");
                 jTextField8.setText("");
+                jLabel8.setText("Supernetting");
+                jLabel8.setFont(jLabel8.getFont().deriveFont(Font.BOLD));
 
             }
             else if ( (192 <= Integer.parseInt(val_1) && Integer.parseInt(val_1) < 224)  && (k2 < 24) ){
@@ -1248,6 +1317,8 @@ public void sliderChanged() {
                 jTextField6.setText("");
                 jTextField7.setText("");
                 jTextField8.setText("");
+                jLabel8.setText("Supernetting");
+                jLabel8.setFont(jLabel8.getFont().deriveFont(Font.BOLD));
 
             }
             else{
@@ -1255,7 +1326,7 @@ public void sliderChanged() {
                 jTextField6.setText(Integer.toString(k[1]));
                 jTextField7.setText(Integer.toString(h[0]));
                 jTextField8.setText(Integer.toString(h[1]));
-
+                jLabel8.setText("");
 
             }
         }
@@ -1342,7 +1413,7 @@ public void field1change(){
 
 }
 
-/* Method that makes better presentable binaty host field format*/
+/* Method that makes better presentable binary host field format*/
 public String fieldpresent(String s){
         int n = Integer.parseInt(s);
         String k = "";
@@ -1407,7 +1478,7 @@ public void nextSub (HostMatch b,String s1,String s2,String s3,String s4){
         }
         if (v_sub.get(5)< 255 && jSlider1.getValue() > 8 && jSlider1.getValue() <= 16){ //&& v_sub.get(6) == 255 && v_sub.get(7)== 255
             i = v_sub.get(5)- v_sub.get(1);
-            val_2 = Integer.toString(Integer.parseInt(s1)+i+1);       
+            val_2 = Integer.toString(Integer.parseInt(s2)+i+1);       
         }
         if (v_sub.get(5)== 255 && jSlider1.getValue() > 8){
              i  = Integer.parseInt(s1)+1;
@@ -1520,6 +1591,9 @@ public void initSecondaryComponents(){
         jTextField6.setText(Integer.toString(k[1]));
         range(InitHostm,val_1,val_2,val_3,val_4);
 }
+
+
+
     
     /**
      * @param args the command line arguments
@@ -1594,6 +1668,7 @@ public void initSecondaryComponents(){
     private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
@@ -1602,12 +1677,11 @@ public void initSecondaryComponents(){
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPopupMenu jPopupMenu1;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSlider jSlider1;
-    public javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
