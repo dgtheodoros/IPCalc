@@ -2,7 +2,7 @@
 
 ## General Info
 
-The IPCalc application is used for calculating the IPs based on classful network model.
+The IPCalc application is used for calculating the IPs based on Classful network model & Classless Inter-Domain Routing.
 
 ***
 ### Link on Wikipedia 

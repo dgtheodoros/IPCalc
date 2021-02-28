@@ -1,4 +1,4 @@
-IPCalc version 1.01
+IPCalc version 1.2
 
 
 Author: Theodoros Dagklis
